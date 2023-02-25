@@ -1,0 +1,91 @@
+{% extends "base1.html" %}
+{% block title %}Royal Carribean - Room Serivce{% endblock %}
+
+
+
+{% block content %}
+
+{% if 'user_created' in session %}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('user_created', None) }} was created.
+</div>
+{% elif 'user_updated' in session %}
+<div class="alert alert-warning alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('user_updated', None) }} was updated.
+</div>
+{% elif 'user_deleted' in session %}
+<div class="alert alert-danger alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ session.pop('user_deleted', None) }} was deleted.
+</div>
+{% endif %}
+
+
+<div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Schedule Status</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item"><a href="/index">Home</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+<div class="container-fluid">
+
+<div>
+  {% if count == 0 %}
+  <p>There are no schedules.</p>
+  {% elif count == 1 %}
+  <p>There is 1 schedule.</p>
+  {% else %}
+  <p>There are {{ count }} schedules.</p>
+  {% endif %}
+</div>
+
+
+
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cabin No.</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Remarks</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for schedule in schedules_list %}
+      <tr>
+        <td>{{ schedule.get_id() }}</td>
+        <td>{{ schedule.get_cabin_no() }}</td>
+        <td>{{ schedule.get_date() }}</td>
+        <td>{{ schedule.get_time() }}</td>
+        <td>{{ schedule.get_remarks() }}</td>
+        <td>
+        </td>
+        <td><a href="/update/{{schedule.get_id()}}" class="btn btn-warning">Update</a></td>
+
+      </tr>
+    {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+{% endblock %}

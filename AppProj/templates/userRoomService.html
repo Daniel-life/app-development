@@ -1,0 +1,48 @@
+{% extends "base2.html" %}
+{% block title %}Royal Carribean{% endblock %}
+
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-7 align-self-center">
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Schedule Room Service</h3>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0 p-0">
+                        <li class="breadcrumb-item"><a href="/index">Home</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+<form method="POST" action="">
+  <div class="form-group">
+    {{ render_field(form.cabin_no, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.date, type="date", class="form-control", value="-- --") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.time, type="time", class="form-control") }}
+  </div>
+  <div id="prof">
+    <div class="form-group">
+      {{ render_field(form.remarks, class="form-control") }}
+    </div>
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+
+</div>
+
+<a href="/roomService">admin</a>
+
+{% endblock %}

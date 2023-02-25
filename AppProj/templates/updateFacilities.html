@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% block title %}Royal Carribean - Update Facilities{% endblock %}
+
+{% block content %}
+{% from "other/_formHelper.html" import render_field %}
+
+<style>
+
+</style>
+
+<h1 class="display-4">Update Facilities</h1>
+
+<form method="POST" action="">
+  {% if facility.get_img() == "/static/assets/images/facilities/gym.jpg" %}
+  <label>
+    <input type="radio" id="g" value="/static/assets/images/facilities/gym.jpg" name="f" checked>
+    <img src="/static/assets/images/facilities/gym.jpg" alt="" height="90px" width="150px">
+  </label><br>
+  {% else %}
+  <label>
+    <input type="radio" id="g" value="/static/assets/images/facilities/gym.jpg" name="f">
+    <img src="/static/assets/images/facilities/gym.jpg" alt="" height="90px" width="150px">
+  </label><br>
+  {% endif %}
+  {% if facility.get_img() == "/static/assets/images/facilities/casino.jpg" %}
+  <label>
+    <input type="radio" id="c" value="/static/assets/images/facilities/casino.jpg" name="f">
+    <img src="/static/assets/images/facilities/casino.jpg" alt="" height="90px" width="150px" checked>
+  </label><br>
+  {% else %}
+  <label>
+    <input type="radio" id="c" value="/static/assets/images/facilities/casino.jpg" name="f">
+    <img src="/static/assets/images/facilities/casino.jpg" alt="" height="90px" width="150px">
+  </label><br>
+  {% endif %}
+  {% if facility.get_img() == "/static/assets/images/facilities/casino.jpg" %}
+  <label>
+    <input type="radio" id="s" value="/static/assets/images/facilities/swimming pool.jpg" name="f" checked>
+    <img src="/static/assets/images/facilities/swimming pool.jpg" alt="" height="90px" width="150px">
+  </label><br>
+  {% else %}
+  <label>
+    <input type="radio" id="s" value="/static/assets/images/facilities/swimming pool.jpg" name="f">
+    <img src="/static/assets/images/facilities/swimming pool.jpg" alt="" height="90px" width="150px">
+  </label><br>
+  {% endif %}
+
+  <label>
+    <input type="radio" id="n" value="n" name="f">
+    <img src="" alt="No Image" height="90px" width="150px">
+  </label><br>
+
+  <div class="form-group">
+    {{ render_field(form.name, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.location, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.quantity, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.max, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.opentime, class="form-control") }}
+  </div>
+  <div class="form-group">
+    {{ render_field(form.closetime, class="form-control") }}
+  </div>
+  <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+{% endblock %}

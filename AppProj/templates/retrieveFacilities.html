@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% block title %}Royal Carribean - Retrieve Facilities{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Retrieve Facilities</h1>
+<div>
+    {% if count == 0 %}
+    <p>There are no facilities.</p>
+    {% elif count == 1 %}
+    <p>There is 1 facility.</p>
+    {% else %}
+    <p>There are {{ count }} facilities.</p>
+    {% endif %}
+</div>
+
+<a href="/adminCrowdControl">
+    <p>Go Back</p>
+</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>location</th>
+        <th>Capacity</th>
+        <th>Timing</th>
+        <th>Availability</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for facility in facilities_list %}
+    <tr>
+        <td><img height="60px" width="100px" src="{{ facility.get_img() }}" alt="img of {{ facility.get_name() }}"></td>
+        <td>{{ facility.get_name() }}</td>
+        <td>{{ facility.get_location() }}</td>
+        <td>{{ facility.get_quantity() }} / {{ facility.get_max() }}</td>
+        <td>{{ facility.get_opentime() }} - {{ facility.get_closetime() }}</td>
+        {% if facility.time_in_range(now) %}
+        <td style="background-color: #4CAF50; color: white;"> Open </td>
+        {% else %}
+        <td style="background-color: #DC143C; color: white;"> Closed </td>
+        {% endif %}
+        <td><a href="/updateFacilities/{{facility.get_facility_id()}}" class="btn btn-warning">Update</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
